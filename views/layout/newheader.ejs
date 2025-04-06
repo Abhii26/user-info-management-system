@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title%></title>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href= "/backend/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="/backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="/backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
+                          
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="/backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="/backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="/backend/plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/backend/dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="/backend/plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="/backend/plugins/summernote/summernote-bs4.min.css">
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <link
+  rel="stylesheet"
+  href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css"
+  integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<link
+  href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.2.2/af-2.7.0/b-3.2.2/b-colvis-3.2.2/b-html5-3.2.2/b-print-3.2.2/cr-2.0.4/date-1.5.5/fc-5.0.4/fh-4.0.1/kt-2.12.1/r-3.0.4/rg-1.5.1/rr-1.5.0/sc-2.4.3/sb-1.8.2/sp-2.3.3/sl-3.0.0/sr-1.4.1/datatables.min.css"
+  rel="stylesheet"
+  integrity="sha384-u4lA6l+7hbl4AEP7E3BuFQZ8+SF5YlUkETNubbdv5971U72pecvgyyCjNLPeO+lL"
+  crossorigin="anonymous"
+/>
+<link rel="shortcut icon" href="#" />
+<script src="/backend/plugins/jquery/jquery.min.js"></script>
+<script>
+  let ApiBaseUrl = "http://localhost:5000";
+</script>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="/backend/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+  </div>
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="../views/index3.ejs" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Navbar Search -->
+      <li class="nav-item">
+        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+          <i class="fas fa-search"></i>
+        </a>
+        <div class="navbar-search-block">
+          <form class="form-inline">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </li>
+
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-comments"></i>
+          <span class="badge badge-danger navbar-badge">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="/backend/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Brad Diesel
+                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">Call me whenever you can...</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div> 
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="/backend/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  John Pierce
+                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">I got your message bro</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="/backend/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Nora Silvester
+                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">The subject goes here</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        </div>
+      </li>
+      <!-- Logout -->
+      <li class="nav-item">
+      <a class="nav-link" href="/logout">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </a>
+    </li>
+      
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+<div class="container fluid"></div>
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/" class="brand-link">
+      <img src="/backend/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">AdminLTE 3</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="/backend/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Tika Malkhan</a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+                <a href="/users" class="nav-link">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                    Users 
+                  </p>
+                </a>
+              </li>
+
+    </div>
+  </aside>
+    <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="col-12">
+          <div
+            class="alert alert-danger"
+            id="error_msg"
+            style="display: none"
+          ></div>
+          <div
+            class="alert alert-success"
+            id="success_msg"
+            style="display: none"
+          ></div>
+        </div>
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" id="add-form" enctype="multipart/form-data">
+            <!--enctype="multipart/form-data -> it is used as i am sending image also -->
+            <!-- Name Field -->
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input
+                type="text"
+                name="name"
+                class="form-control form-control-lg"
+                placeholder="Enter name"
+              />
+            </div>
+
+            <!-- Email Field -->
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input
+                type="email"
+                name="email"
+                class="form-control form-control-lg"
+                placeholder="Enter email"
+              />
+            </div>
+
+            <!-- Phone Field -->
+            <div class="mb-3">
+              <label class="form-label">Phone</label>
+              <input
+                type="tel"
+                name="phone"
+                class="form-control form-control-lg"
+                placeholder="Enter phone"
+              />
+            </div>
+
+            <!-- File Upload Field -->
+            <div class="mb-3">
+              <label class="form-label">Select Image</label>
+              <input
+                type="file"
+                name="image"
+                class="form-control form-control-lg"
+              />
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mb-3 d-grid">
+              <button type="submit" class="btn btn-primary">Add User</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   
+
+
+</div>
+
+
+<!-- <div
+    class="modal fade"
+    id="editModal"
+    tabindex="-1"
+    aria-labelledby="editModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Edit User</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form id="edit-form" enctype="multipart/form-data">
+            <input type="hidden" name="userId" id="editUserId" />
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input
+                type="text"
+                name="name"
+                id="editName"
+                class="form-control"
+                placeholder="Enter name"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="editEmail"
+                class="form-control"
+                placeholder="Enter email"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Phone</label>
+              <input
+                type="tel"
+                name="phone"
+                id="editPhone"
+                class="form-control"
+                placeholder="Enter phone"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Select Image</label>
+              <input type="file" name="image" class="form-control" />
+              <img id="currentImage" width="100" class="img-thumbnail mt-1" />
+            </div>
+            <div class="mb-3 d-grid">
+              <button type="submit" class="btn btn-success">Update User</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>  -->
+
+<script>
+    document.getElementById("add-form").addEventListener(submit, function (e) {
+      console.log("FORM SUBMITTED");
+      e.preventDefault();
+      let success_msg = document.getElementById("success_msg");
+      let error_msg = document.getElementById("error_msg");
+
+      success_msg.style.display = none;
+      error_msg.style.display = none;
+
+      let formData = new FormData(e.target);
+      console.log("FORM DATA :", formData);
+
+      fetch(ApiBaseUrl + "users", {
+        method: "POST",
+        body: "formData",
+      })
+        .then((response) => {
+          console.log("Response Recieved");
+          // return response.json();
+        })
+        .then((result) => {
+          console.log("Result");
+          if ((result.success = true)) {
+            success_msg.style.display = block;
+            success_msg.innerHTML = result.message;
+            reload();
+            console.log("Successful ");
+            e.target.reset();
+
+            let modalElement = document.getElementById(exampleModal);
+            let modalInstance = bootstrap.Modal.getInstance(modalElement);
+            modalInstance.hide();
+          } else {
+            error_msg.style.display = none;
+            error_msg.innerHTML = result.message;
+          }
+        });
+    });
+  </script>
+
+  

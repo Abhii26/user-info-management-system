@@ -1,0 +1,290 @@
+<%- include("./layout/newheader")  %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <% if (message) { %>
+                <div class="alert alert-<%= message.type === 'success' ? 'success' : 'danger' %> alert-dismissible fade show" role="alert">
+                    <strong><%= message.message %></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <% } %>
+
+            <!-- Add User Button -->
+            <div class="my-3 text-right" style="margin-left: 50px;">
+              <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <i class="fas fa-plus"></i> Add User
+              </button>
+          </div>
+          <form action="/users" method="GET" class="d-flex mb-3 ms-auto" style="width: 250px;">
+            <input type="search" name="search" class="form-control form-control-sm me-2 w-100" 
+                placeholder="Search users..." value="<%= searchQuery %>">
+            <button type="submit" class="btn btn-primary btn-sm">Search</button>
+        </form>
+        
+          <div class="table-responsive" style="margin-left: 50px;" >
+              
+                    <table id="table" class="table table-hover my-4 my-2 text-center " >
+                        <thead >
+                            <tr class="table-dark " >
+                                <th class="text-center">S.No</th>
+                                <!-- <th class="text-center">ID</th> -->
+                                <th class="text-center">Image</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">E-mail</th>
+                                <th class="text-center">Phone</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <% users.forEach((user, index) => { %>
+                                <tr>
+                                    <td><%= (currentPage - 1) * 10 + index + 1 %></td> 
+                                    <td><img src="<%= user.image %>" width="50" height="50"></td>
+                                    <td><%= user.name %></td>
+                                    <td><%= user.email %></td>
+                                    <td><%= user.phone %></td>
+                                    <td>
+                                        <a href="/users/edit/<%= user._id %>" class="btn btn-primary btn-sm me-2">
+                                            <i class="fas fa-edit"></i></a>
+                                        <form action="/users/delete" method="post" style="display: inline-block;" >
+                                            <input type="hidden" value='<%= user._id %>'  name = "id">
+                                            <input type="hidden" name="page" value="<%= currentPage %>">
+                                          <button class="btn btn-danger btn-sm me-2" value="submit"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                    <ul class="pagination pagination-sm m-0 float-right">
+                        <!-- <li class="page-item"><a class="page-link" href="#">«</a></li> -->
+                        <% if (totalPages > 1) { %>
+                            <% for(let i = 1; i<= totalPages; i++ ){  %>
+                                <li class="page-item <%= i === currentPage ? "active" : ""  %>">
+                                    <a class="page-link <% if (i==currentPage) { %>
+                                      active
+                                    <% } %>
+                                    " href="/users?page=<%= i  %><% if (searchQuery) { %>&search=<%= searchQuery %><% } %>"><%= i  %></a></li>
+                                    
+                                 <% } %>
+                        <% } %>
+                        
+                        
+                        <!-- <li class="page-item"><a class="page-link" href="#">»</a></li> -->
+                      
+                    </ul>
+
+                    
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <script>
+
+function deleteUser(userId) {
+// if (confirm("Are you sure you want to delete this user?")) {
+    fetch(`/delete/${userId}`, { method: "GET" })
+    .then(response => response.json())
+    .then(data => {
+        $('#table').DataTable().ajax.reload(); // Refresh table after delete
+    })
+    .catch(error => console.error("Error:", error));
+// }
+}
+
+ 
+function showEditModal(userId) {
+fetch(`/users/${userId}`, { method: "GET" })
+    .then(response => response.json())
+    .then(user => {
+        // Populate modal fields
+        document.getElementById('editUserId').value = user._id;
+        document.getElementById('editName').value = user.name;
+        document.getElementById('editEmail').value = user.email;
+        document.getElementById('editPhone').value = user.phone;
+        document.getElementById('currentImage').src = `/${user.image}`;
+        
+        // Show the modal
+        let modal = new bootstrap.Modal(document.getElementById('editModal'));
+        modal.show();
+    })
+    .catch(error => console.error("Error:", error));
+}
+
+// Handle edit form submission
+document.getElementById('edit-form').addEventListener('submit', function(e) {
+e.preventDefault(); 
+
+
+
+const formData = new FormData(this);
+const userId = document.getElementById('editUserId').value;
+
+fetch(`/users/${userId}`, {
+    method: 'POST',
+    body: formData
+})
+.then(response => response.json())
+.then(result => {
+    if (result.success) { 
+        // Hide modal
+        let modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+        modal.hide();
+        
+        // Refresh table
+        $('#table').DataTable().ajax.reload();
+    }
+})
+.catch(error => console.error("Error:", error));
+});
+
+
+
+
+    // $(function () {
+    //   $("#tables").DataTable({
+    //     "responsive": true, "lengthChange": false, "autoWidth": false,
+    //     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    //   }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    //   $('#tables').DataTable({
+    //     "paging": true,
+    //     "lengthChange": false,
+    //     "searching": false,
+    //     "ordering": true,
+    //     "info": true,
+    //     "autoWidth": false,
+    //     "responsive": true,
+    //   });
+    // });
+  </script> -->
+
+
+
+
+
+
+
+<!-- <script>
+
+
+$(document).ready(function(){
+getalldata();
+});
+
+function getalldata()
+{
+$('#table').DataTable({
+    "ajax": {
+        "url": "/getusers",
+        "dataSrc": ""  // ✅ Since we send an array directly, use empty string
+    },
+    "columns": [
+    {   // Add Serial Number column as the first column
+            "data": null,
+            "render": function (data, type, row, meta) {
+                return meta.row + 1; // Starts from 1
+            },
+            "orderable": false,  // Prevents sorting on this column
+            "width": "5%"
+        },
+        
+        { "data": "_id" },      // Match the field names in MongoDB
+        { 
+            "data": "image",    // Assuming 'image' field stores URL or path
+            "render": function(data, type, row) {
+                return `<img src="${data}" width="50" height="50">`;
+            }
+        },
+        { "data": "name" },
+        { "data": "phone" },
+        { 
+            "data": "_id",
+            "render": function(data, type, row) {
+                return( `
+                    <button class="btn btn-primary btn-sm me-2" onclick="showEditModal('${data}')">Edit</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteUser('${data}')">Delete</button>`
+                  )
+            }
+        }
+    ],
+    "order": [],
+    "rowCallback": function(row, data, index) {
+        // Optional: Additional row styling if needed
+    }
+});
+}
+function reload()
+{
+$('#table').DataTable().ajax.reload();
+}
+
+
+function deleteUser(userId) {
+// if (confirm("Are you sure you want to delete this user?")) {
+    fetch(`/delete/${userId}`, { method: "GET" })
+    .then(response => response.json())
+    .then(data => {
+        $('#table').DataTable().ajax.reload(); // Refresh table after delete
+    })
+    .catch(error => console.error("Error:", error));
+// }
+}
+
+
+  Edit User Js
+function showEditModal(userId) {
+fetch(`/ /${userId}`, { method: "GET" })
+    .then(response => response.json())
+    .then(user => {
+        // Populate modal fields
+        document.getElementById('editUserId').value = user._id;
+        document.getElementById('editName').value = user.name;
+        document.getElementById('editEmail').value = user.email;
+        document.getElementById('editPhone').value = user.phone;
+        document.getElementById('currentImage').src = `/${user.image}`;
+        
+        // Show the modal
+        let modal = new bootstrap.Modal(document.getElementById('editModal'));
+        modal.show();
+    })
+    .catch(error => console.error("Error:", error));
+}
+
+// Handle edit form submission
+document.getElementById('edit-form').addEventListener('submit', function(e) {
+e.preventDefault(); 
+
+
+
+const formData = new FormData(this);
+const userId = document.getElementById('editUserId').value;
+
+fetch(`/edit/${userId}`, {
+    method: 'POST',
+    body: formData
+})
+.then(response => response.json())
+.then(result => {
+    if (result.success) { 
+        // Hide modal
+        let modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+        modal.hide();
+        
+        // Refresh table
+        $('#table').DataTable().ajax.reload();
+    }
+})
+.catch(error => console.error("Error:", error));
+});
+
+
+ </script>  -->
+
+
+
+
+
+<%- include("./layout/newfooter")  %>
