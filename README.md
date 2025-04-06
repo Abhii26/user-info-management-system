@@ -67,9 +67,15 @@ http://localhost:5000
 
 
 ### 🔐 Login Page
-![Login Page](assets/login.mp4)
+![Login Page](assets/login.png)
 
-> *(You may not be able to preview videos directly in GitHub README, but it will be available as a downloadable asset.)*
+
+---
+
+### 📝 Register Page
+![Register Page](assets/signup.png)
+
+
 
 ---
 
