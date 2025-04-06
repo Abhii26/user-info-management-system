@@ -29,7 +29,45 @@ A full-featured user management system built with **Node.js**, **Express**, **Mo
 ## 📁 Project Structure
 
 
-UserInfoManagement/ ├── assets/ # Media assets (images, videos for documentation/screenshots) │ ├── login.mp4 # Login page background video │ ├── userdashboard.png # Screenshot of user dashboard │ ├── adduser.png # Screenshot of add user form │ ├── edituser.png # Screenshot of edit user form │ └── deleteuser.png # Screenshot of delete user confirmation ├── database/ # MongoDB connection logic │ └── db.js ├── models/ # Mongoose schema for users │ └── usermodel.js ├── public/ # Static assets (CSS, JS, etc.) ├── routes/ # Route definitions │ └── route.js ├── uploads/ # Uploaded profile images │ └── (Uploaded profile images) ├── views/ # EJS templates for rendering pages │ ├── layout/ # Layout files (header/footer) │ ├── datatable.ejs # User data in table format │ ├── edituser.ejs # Edit user form │ ├── home.ejs # Home dashboard │ ├── login.ejs # Login page │ ├── register.ejs # Registration page │ └── userdata.ejs # Detailed user info view ├── .env # Environment variables ├── .gitignore # Git ignore rules ├── app.js # Main server file ├── package.json # Project dependencies and scripts └── README.md # Project documentation
+<pre>
+UserInfoManagement/
+├── assets/                 # Media assets (images, videos for documentation/screenshots)
+│   ├── login.mp4           # Login page background video
+│   ├── userdashboard.png   # Screenshot of user dashboard
+│   ├── adduser.png         # Screenshot of add user form
+│   ├── edituser.png        # Screenshot of edit user form
+│   └── deleteuser.png      # Screenshot of delete user confirmation
+├── database/               # MongoDB connection logic
+│   └── db.js               # Database configuration
+├── models/                 # Mongoose schema definitions
+│   └── usermodel.js        # User schema
+├── node_modules/           # Node.js dependencies (auto-generated)
+├── public/                 # Static assets (CSS, JS, etc.)
+│   ├── css/
+│   │   └── styles.css      # Main stylesheet
+│   └── js/
+│       └── script.js       # Custom JavaScript (if any)
+├── routes/                 # Route definitions
+│   └── route.js            # Main routing logic
+├── uploads/                # Uploaded profile images
+│   └── (user images)       # User-uploaded profile pictures
+├── views/                  # EJS templates for rendering the frontend
+│   ├── layout/             # Layout files (header/footer)
+│   │   ├── header.ejs      # Header partial
+│   │   └── footer.ejs      # Footer partial
+│   ├── datatable.ejs       # User data table view
+│   ├── edituser.ejs        # Edit user form view
+│   ├── home.ejs            # Dashboard/homepage view
+│   ├── login.ejs           # Login page view
+│   ├── register.ejs        # Registration page view
+│   └── userdata.ejs        # Detailed user info view
+├── .env                    # Environment variables file
+├── .gitignore              # Git ignore rules
+├── app.js                  # Main Express server file
+├── package-lock.json       # Lock file for npm dependencies
+├── package.json            # Project metadata and dependencies
+└── README.md               # Project documentation
+</pre>
 
 
 
